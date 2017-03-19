@@ -1,5 +1,6 @@
 ﻿#region Imports
 
+using PEIK.Util.Code_Generation;
 using System;
 using System.Windows.Forms;
 
@@ -33,16 +34,16 @@ namespace PEIK.Util.Crypter
         {
             byte[] input = CrypterMethods.Encrypt(System.IO.File.ReadAllBytes(_file), _key);
             string[] vars = {
-					"[var1]",
-					"[var2]",
+                    "[var1]",
+                    "[var2]",
                     "[enc]",
                     "[key]",
-					"[var4]",
-					"[var5]",
+                    "[var4]",
+                    "[var5]",
                     "[var6]",
                     "[var7]"
-				};
-            foreach(string s in vars)
+                };
+            foreach (string s in vars)
             {
                 switch (s)
                 {
@@ -63,7 +64,7 @@ namespace PEIK.Util.Crypter
 
         public void Save(string location)
         {
-            Compiler.GenerateExecutable(location, _source, _icon);
+            Compiler.GenerateExecutable(location, new[] { _source }, _icon);
         }
     }
 }
